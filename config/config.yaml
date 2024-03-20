@@ -1,0 +1,13 @@
+env: "local"
+grpc:
+  port: 44044
+  timeout: 5s
+
+database:
+  port: 5432
+  username: postgres
+  password:
+  db_name:  post_service
+  host: localhost
+
+migrations_path: "./migrations"
