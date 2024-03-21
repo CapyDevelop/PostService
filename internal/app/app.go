@@ -2,6 +2,7 @@ package app
 
 import (
 	grpcApp "PostService/internal/app/grpcApp"
+	"PostService/internal/services/PostServer"
 	storage2 "PostService/internal/storage"
 	"PostService/internal/storage/postgresConn"
 	"log/slog"
@@ -24,7 +25,9 @@ func New(log *slog.Logger, grpcPort int,
 
 	storage := storage2.New(log, dbConn)
 
-	grpcApplication := grpcApp.New(log, storage, grpcPort)
+	server := PostServer.New(log, storage)
+
+	grpcApplication := grpcApp.New(log, server, grpcPort)
 
 	return &App{
 		GRPCSrv: grpcApplication,

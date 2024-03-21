@@ -10,8 +10,14 @@ import (
 func New(user, password, database, host string, port int) (*sql.DB, error) {
 	op := "storage.postgres.New"
 	dsn := fmt.Sprintf(
-		"host=%s user=%s password=%s dbname=%s port=%d sslmode=disable TimeZone=Asia/Shanghai",
-		host, user, password, database, port)
+		"host=%s  user=%s ",
+		host, user)
+	if password != "" {
+		dsn += fmt.Sprintf("password=%s ", password)
+	}
+	dsn += fmt.Sprintf("dbname=%s port=%d sslmode=disable TimeZone=Asia/Shanghai", database, port)
+
+	fmt.Println(dsn)
 
 	db, err := sql.Open("pgx", dsn)
 	if err != nil {

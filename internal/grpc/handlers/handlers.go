@@ -11,11 +11,11 @@ import (
 
 type PostServ interface {
 	GetPosts(ctx context.Context, request models.GetPostsRequest) (models.GetPostsResponse, error)
-	GetPost(ctx context.Context, request models.GetPostResponse) (models.GetPostResponse, error)
-	//SetRating
-	//GetComments
-	//SetComment
-	//SetCommentRating
+	GetPost(ctx context.Context, request models.GetPostRequest) (models.GetPostResponse, error)
+	SetRating(ctx context.Context, request models.SetRatingRequest) error
+	GetComments(ctx context.Context, request models.GetCommentsRequest) (models.GetCommentsResponse, error)
+	SetComment(ctx context.Context, request models.SetCommentRequest) error
+	SetCommentRating(ctx context.Context, request models.SetCommentRatingRequest) error
 	CreatePost(ctx context.Context, request models.CreatePostRequest) error
 }
 
